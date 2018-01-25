@@ -5,13 +5,15 @@ window.onload = function() {
  
 // Create an array of elements
 var elements = ["hydrogen", "helium", "lithium", "beryllium", "boron", "carbon", "nitrogen","oxygen","fluorine","neon","sodium","magnesium","aluminum","silicon","phosphorus","sulfur","chlorine","argon","potassium","calcium"];
+
 // Pick a random element from the list
 var random = elements[Math.floor((Math.random() * elements.length))];
+
 // Initiating variables
 var count = 7;
 var addGuess = 0;
-
 var letterGuess = [];
+
 // Split the word into charaters
 var char = random.split("");
 
@@ -21,14 +23,14 @@ var underlines = [];
  for (var i = 0; i < char.length; i++) {
      underlines[i] = [ "_ "] ;  
  }
+
+
  var gameDiv = document.getElementById("game");
  var displayDiv = document.getElementById("display");
  var guessedDiv = document.getElementById("guessed");
  var remainDiv = document.getElementById("remain");
-
-
-
-      displayDiv.innerHTML = underlines.join(" ");
+ 
+ displayDiv.innerHTML = underlines.join(" ");
 
       
  // This function is run whenever the user presses a key.
@@ -50,14 +52,13 @@ var underlines = [];
             }
         }
 
-
+// check wins
 if ( JSON.stringify(underlines)== JSON.stringify(char)){
           alert("You Win! Please refresh page for a new game.");
          }
 
-
+// Updating wrong guessed and remain counts
 var sum = index.reduce(function(a, b) { return a + b; }, 0);
-
 if (sum == 0){
             letterGuess[addGuess] = userGuess;
             addGuess ++;
@@ -67,7 +68,7 @@ if (sum == 0){
             }
 var uniqueGuess = letterGuess.filter( onlyUnique );
        guessedDiv.innerHTML = uniqueGuess;
-    count  = 7 - uniqueGuess.length;
+       count  = 7 - uniqueGuess.length;
 
     // Updating hangman pictures
      if (count === 6) {
@@ -94,9 +95,7 @@ var uniqueGuess = letterGuess.filter( onlyUnique );
                     underlines = char;
     }
 
-
 }
-
 
 
  // For checking purpose
